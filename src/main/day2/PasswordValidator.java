@@ -13,4 +13,19 @@ public class PasswordValidator {
         }
         return (numberOfLetter >= password.getPolicy().getMinValue() && numberOfLetter <= password.getPolicy().getMaxValue());
     }
+
+    public boolean validatePasswordPartTwo(Password password) {
+
+        String passwordString = password.getPassword();
+        char letter = password.getPolicy().getLetter();
+
+        boolean isMatchOne = matchAtPosition(passwordString, letter, password.getPolicy().getMinValue());
+        boolean isMatchTwo = matchAtPosition(passwordString, letter, password.getPolicy().getMaxValue());
+
+        return (isMatchOne != isMatchTwo);
+    }
+
+    private boolean matchAtPosition(String password, char letter, int position) {
+        return (letter == password.charAt(position - 1));
+    }
 }

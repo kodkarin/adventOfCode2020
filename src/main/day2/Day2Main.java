@@ -8,6 +8,12 @@ public class Day2Main {
         PasswordInputProvider provider = new PasswordInputProvider("C:\\Users\\Admin\\IdeaProjects\\adventOfCode2020\\src\\main\\day2\\inputDay2.txt");
         List<Password> passwords =  provider.getInput();
         PasswordValidator validator = new PasswordValidator();
+
+        System.out.println(getNumberOfValidPasswordsPart1(passwords, validator));
+        System.out.println(getNumberOfValidPasswordsPart2(passwords, validator));
+    }
+
+    public static int getNumberOfValidPasswordsPart1(List<Password> passwords, PasswordValidator validator) {
         int numberOfValidPasswords = 0;
 
         for (Password password : passwords) {
@@ -15,8 +21,17 @@ public class Day2Main {
                 numberOfValidPasswords++;
             }
         }
+        return numberOfValidPasswords;
+    }
 
-        System.out.println(numberOfValidPasswords);
+    public static int getNumberOfValidPasswordsPart2(List<Password> passwords, PasswordValidator validator) {
+        int numberOfValidPasswords = 0;
 
+        for (Password password : passwords) {
+            if (validator.validatePasswordPartTwo(password)) {
+                numberOfValidPasswords++;
+            }
+        }
+        return numberOfValidPasswords;
     }
 }
