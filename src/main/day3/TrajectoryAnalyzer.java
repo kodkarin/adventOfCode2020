@@ -14,6 +14,10 @@ public class TrajectoryAnalyzer {
         this.landscapeMap = provider.getLandscape().getLandscapeMap();
     }
 
+    public void setTrajectory(Trajectory trajectory) {
+        this.trajectory = trajectory;
+    }
+
     public int getNumberOfOccurrences(char characterToFind) {
         int number = 0;
         int x = trajectory.getXDistance();
