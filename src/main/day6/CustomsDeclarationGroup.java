@@ -26,4 +26,29 @@ public class CustomsDeclarationGroup {
         }
         return answer.toString();
     }
+
+    public String getCommonAnswers() {
+
+        char[] commonLetters = customsDeclarations.get(0).getPositiveAnswers().toCharArray();
+
+        for (CustomsDeclaration declaration : customsDeclarations) {
+            if (commonLetters.length > 0) {
+                char[] letters = declaration.getPositiveAnswers().toCharArray();
+                StringBuilder newCommonLetters = new StringBuilder();
+                for (char letter : letters) {
+                    for (char commonLetter : commonLetters) {
+                        if (commonLetter == letter) {
+                            newCommonLetters.append(letter);
+                        }
+                    }
+                }
+                commonLetters = newCommonLetters.toString().toCharArray();
+            }
+        }
+        StringBuilder answer = new StringBuilder();
+        for (char letter : commonLetters) {
+            answer.append(letter);
+        }
+        return answer.toString();
+    }
 }

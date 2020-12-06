@@ -9,11 +9,16 @@ public class Day6Main {
         CustomsDeclarationsProvider provider = new CustomsDeclarationsProvider("C:\\Users\\Admin\\IdeaProjects\\adventOfCode2020\\src\\main\\day6\\inputDay6.txt");
         List<CustomsDeclarationGroup> customsDeclarationGroups = provider.getCustomsDeclarationGroups();
 
-        int result = 0;
-
+        int resultPart1 = 0;
         for (CustomsDeclarationGroup group : customsDeclarationGroups) {
-            result += group.getAllPositiveAnswers().length();
+            resultPart1 += group.getAllPositiveAnswers().length();
         }
-        System.out.println(result);
+        System.out.println(resultPart1);
+
+        int resultPart2 = 0;
+        for (CustomsDeclarationGroup group : customsDeclarationGroups) {
+            resultPart2 += group.getCommonAnswers().length();
+        }
+        System.out.println(resultPart2);
     }
 }
