@@ -5,27 +5,39 @@ import java.util.List;
 
 public class Game {
 
-    private BootCodeProvider provider;
     private BootCode bootCode;
     private int accumulator;
     private int index;
     private List<Integer> indicesUsed;
 
-    public Game(BootCodeProvider provider) {
-        this.provider = provider;
-        this.bootCode = provider.getBootCode();
+    public Game(BootCode bootCode) {
+        this.bootCode = bootCode;
         this.accumulator = 0;
+        this.index = 0;
         this.indicesUsed = new ArrayList<>();
     }
 
+    public void setBootCode(BootCode bootCode) {
+        this.bootCode = bootCode;
+    }
+
     public int runGame() {
-        while (!(indicesUsed.contains(index))) {
-            runInstruction(bootCode.getInstructionAtIndex(index));
+
+        while (index != bootCode.getInstructions().size()) {
+            if (!indicesUsed.contains(index)) {
+                runInstruction(bootCode.getInstructionAtIndex(index));
+            } else {
+                accumulator = 0;
+                index = 0;
+                indicesUsed.clear();
+                return -1;
+            }
         }
         return accumulator;
     }
 
     private void runInstruction(Instruction instruction) {
+
         indicesUsed.add(index);
 
         String operation = instruction.getOperation();

@@ -10,6 +10,10 @@ public class BootCode {
         this.instructions = instructions;
     }
 
+    public List<Instruction> getInstructions() {
+        return instructions;
+    }
+
     public Instruction getInstructionAtIndex(int index) {
         return instructions.get(index);
     }

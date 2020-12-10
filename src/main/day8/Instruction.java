@@ -14,6 +14,10 @@ public class Instruction {
         return operation;
     }
 
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
     public int getArgument() {
         return argument;
     }
