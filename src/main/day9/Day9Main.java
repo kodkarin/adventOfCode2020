@@ -11,5 +11,6 @@ public class Day9Main {
         XMASAnalyzer analyzer = new XMASAnalyzer(numbers);
 
         System.out.println(analyzer.getInvalidNumber());
+        System.out.println(analyzer.findEncryptionWeakness());
     }
 }

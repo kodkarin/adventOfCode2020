@@ -1,5 +1,7 @@
 package day9;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class XMASAnalyzer {
@@ -10,13 +12,39 @@ public class XMASAnalyzer {
         this.xmasData = xmasData;
     }
 
-    public Long getInvalidNumber() {
+    public long findEncryptionWeakness() {
+
+        long invalidNumber = getInvalidNumber();
+        List<Long> possibleCombination = new ArrayList<>();
+
+        for (int i = 0; i < xmasData.indexOf(invalidNumber); i++) {
+            long sum = 0;
+            possibleCombination.clear();
+            int numbers = 0;
+
+            while (sum < invalidNumber) {
+
+                long currentNumber = xmasData.get(i + numbers);
+                numbers++;
+                sum += currentNumber;
+                possibleCombination.add(currentNumber);
+
+                if (sum == invalidNumber) {
+                    Collections.sort(possibleCombination);
+                    return possibleCombination.get(0) + possibleCombination.get(possibleCombination.size() - 1);
+                }
+            }
+        }
+        return -1;
+    }
+
+    public long getInvalidNumber() {
         for (int i = 25; i < xmasData.size(); i++) {
             if (!isValidNumberAtPosition(i)) {
                 return xmasData.get(i);
             }
         }
-        return 0L;
+        return -1;
     }
 
     private boolean isValidNumberAtPosition(int index) {
